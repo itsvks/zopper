@@ -58,7 +58,7 @@ WSGI_APPLICATION = 'zopper.wsgi.application'
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
 import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
+DATABASES = {'default': dj_database_url.config(default='postgres://foo:bar@localhost:5432/db')}
 
 #DATABASES = {
 #    'default': {
