@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="crud">
+
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<title>Assignment</title>
+
+	<!-- Bootstrap Core CSS -->
+	<link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Custom CSS -->
+	<link href="/static/css/style.css" rel="stylesheet">
+	<link href="/static/css/font.css" rel="stylesheet">
+
+</head>
+
+<body ng-controller="mainCtrl">
+		
+	<!-- Navigation -->
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Assignment</a>
+			</div>
+		</div>
+	</nav>
+
+	<!-- Page Content -->
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3">
+				<h2>Search</h2>
+				
+				<div class="btn-group searchDropdown" ng-class="{'open' : isDropdown}">
+					<button type="button" class="btn btn-default dropdown-toggle" ng-click="isDropdown = !isDropdown">Search Criteria<span class="caret"></span></button>
+					<form class="form-horizontal" role="form" name="searchForm" novalidate>
+						<ul class="dropdown-menu" role="menu">
+							<li><input type="text" class="form-control deviceName" ng-model="model.device_name" placeholder="Device Name" /></li>
+							<li class="range_header">
+								<input type="number" class="form-control deviceMin" placeholder="Min Range" ng-model="model.min_range">
+								<div class="dash">&nbsp;</div>
+								<input type="number" class="form-control deviceMax" placeholder="Max Range" ng-model="model.max_range">
+							</li>
+							<li class="divider"></li>
+							<li class="btn-group pull-right"><a ng-click="search(searchForm)" class="btn btn-info done">Done</a></li>
+						</ul>
+					</form>
+				</div>
+			</div>
+
+			<div class="col-md-9">
+				<!-- List of all the user -->
+				<div class="col-md-10" ng-show="listView">
+					<h1>Devices Manager</h1>
+					<div class="table-responsive">
+						<table class="table table-bordered table-striped table-hover" style="width:100%">
+							<thead>
+							<tr>
+								<th>Name</th>
+								<th>Range</th>
+								<th width="30%"><a ng-click="newDevice()" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Create Device</a></th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr ng-repeat="device in devices  | orderBy:'name'">
+								<td>
+									<a ng-click="isCollapsed = !isCollapsed">{$device.device_name$}</a>
+									<div collapse="isCollapsed">
+										<ul>
+											<li><strong>Id: </strong>{$device.id$}</li>
+											<li><strong>Name: </strong>{$device.device_name$}</li>
+											<li><strong>Range: </strong>{$device.range$}</li>
+										</ul>
+									</div>
+								</td>
+								<td>{$ device.range $}</td>
+								<td>
+									<div class="btn-group" role="group">
+										<a ng-click="edit(device.id)" class="btn btn-default"><i class="glyphicon glyphicon-pencil"></i></a>
+										<a ng-click="deviceDelete(device.id)" class="btn btn-default"><i class="glyphicon glyphicon-remove"></i></a>
+									</div>
+								</td>
+							</tr>
+							<tr ng-if='devices[0] === undefined'>
+								<td colspan="3">No Devices</td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<!-- New User -->
+				<div class="col-md-7" ng-hide="listView">
+					<h2 class="h1">Device Details</h2>
+
+					<form class="form-horizontal" role="form" name="deviceForm" novalidate>
+						<div class="form-group" ng-class="{ 'has-error' : deviceForm.deviceName.$invalid && (!deviceForm.deviceName.$pristine || submitted)}">
+							<label for="deviceName" class="col-sm-3 control-label">Name</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" id="deviceName" name="deviceName" ng-model="model.device_name" placeholder="Name" required>
+								<p ng-show="deviceForm.deviceName.$error.required && (deviceForm.deviceName.$dirty || submitted)" class="help-block">Enter device name.</p>
+							</div>
+						</div>
+
+						<div class="form-group" ng-class="{ 'has-error' : deviceForm.deviceRange.$invalid && (!deviceForm.deviceRange.$pristine || submitted)}">
+							<label for="deviceRange" class="col-sm-3 control-label">Range</label>
+							<div class="col-sm-9">
+								<input type="number" class="form-control" id="deviceRange" name="deviceRange" ng-model="model.range" placeholder="Range" required>
+								<p ng-show="deviceForm.deviceRange.$error.required && (deviceForm.deviceRange.$dirty || submitted)" class="help-block">Enter device range.</p>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<button ng-click="new(deviceForm)" ng-show="editing" type="submit" class="btn btn-default">Done</button>
+								<a ng-click="update(deviceForm)" ng-hide="editing" class="btn btn-default">Update</a>
+								<a ng-click="cancel(deviceForm)" class="btn btn-default">Cancel</a>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	
+	<!-- Angularjs -->
+	<script src="/static/js/angular.min.js"></script>
+	<script src="/static/js/ui-bootstrap-tpls.min.js"></script>
+
+	<script src="/static/js/app.js"></script>
+	<script src="/static/js/services.js"></script>
+	
+</body>
+
+</html>

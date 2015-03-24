@@ -1,0 +1,64 @@
+done@font-face {
+	font-family: 'open_sansregular';
+	src: url('../fonts/opensans/OpenSans-Regular-webfont.eot');
+	src: url('../fonts/opensans/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+			 url('../fonts/opensans/OpenSans-Regular-webfont.woff') format('woff'),
+			 url('../fonts/opensans/OpenSans-Regular-webfont.ttf') format('truetype'),
+			 url('../fonts/opensans/OpenSans-Regular-webfont.svg#open_sansregular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+body {
+	font-family: 'open_sansregular', Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	line-height: 1.42857143;
+	padding-top: 70px;
+	background-color: #eee;
+}
+a{
+	cursor: pointer;
+}
+.dropdown-menu:before{
+	content: "\f0d8";
+	display: inline-block;
+	font-family: 'FontAwesome';
+	font-size: 21px;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	transform: translate(0, 0);
+	position: absolute;
+	top: -19px;
+	color: #fff;
+	left: 6px;
+}
+.dropdown-menu>li>a.done{
+	color: #fff;
+	margin-right: 10px;
+}
+.searchDropdown .dropdown-menu{
+	min-width: 300px;
+	padding: 5px 10px;
+	margin-top: 8px;
+}
+.searchDropdown.open .dropdown-menu{
+	display: block;
+}
+.range_header{
+	display: inline-flex;
+}
+.range_header .dash {
+	display: inline-block;
+	height: 1px;
+	width: 60px;
+	background: #7f7f7f;
+	margin-top: 25px;
+}
+.deviceMin{
+	margin-right: 5px;
+	margin-top: 10px;
+}
+.deviceMax{
+	margin-left: 5px;
+	margin-top: 10px;
+}
