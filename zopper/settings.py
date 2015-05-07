@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'oa5yspziae#b&ln^8^!2w@(1y*9nsmsn#ipi^56p$2)#fve_o7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 TEMPLATE_DEBUG = True
 
@@ -57,15 +57,15 @@ WSGI_APPLICATION = 'zopper.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
-import dj_database_url
-DATABASES = {'default': dj_database_url.config(default='postgres://foo:bar@localhost:5432/db')}
+#import dj_database_url
+#DATABASES = {'default': dj_database_url.config(default='postgres://foo:bar@localhost:5432/db')}
 
-#DATABASES = {
-#   'default': {
-#       'ENGINE': 'django.db.backends.sqlite3',
-#       'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#   }
-#}
+DATABASES = {
+   'default': {
+       'ENGINE': 'django.db.backends.sqlite3',
+       'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+   }
+}
 
 ANONYMOUS_USER_ID = 1
 # Internationalization
