@@ -1,0 +1,9 @@
+- hosts: zopper
+  roles:
+    - common
+
+- hosts: zopper_django_servers
+  roles:
+    - uwsgi
+    - nginx
+    - deploy

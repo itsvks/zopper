@@ -1,0 +1,8 @@
+[zopper_django_servers]
+10.4.4.3 ansible_ssh_user=vagrant
+
+[bugatti:vars]
+repo_url= git@github.com:itsvks/zopper.git
+repo_remote= origin
+repo_branch= master
+DEPLOYMENT_TYPE=DEVELOPMENT

@@ -1,0 +1,9 @@
+
+project_name: zopper
+project_root: /srv
+project_user: "{{ ansible_ssh_user }}"
+project_group: "{{ ansible_ssh_user }}"
+
+python_requirements_file: "{{project_root}}/{{project_name}}/requirements.txt"
+
+repo_url: git@github.com:itsvks/zopper.git

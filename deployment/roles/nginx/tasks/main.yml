@@ -1,0 +1,27 @@
+---
+- name: Install Nginx
+  apt: pkg=nginx state=installed update-cache=yes
+  sudo: yes
+  tags:
+    - setup
+    - nginx
+
+- name: Remove default Nginx site config
+  file: path=/etc/nginx/sites-enabled/default state=absent
+  sudo: yes
+  notify:
+    - restart nginx
+  tags: 
+    - setup
+    - nginx
+
+
+- name: Copy nginx.conf file
+  template: src=zopper.conf.j2 dest=/etc/nginx/sites-enabled/zopper.conf
+  sudo: yes
+  notify:
+    - restart nginx
+  tags:
+    - setup
+    - nginx
+

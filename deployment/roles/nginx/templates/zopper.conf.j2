@@ -1,0 +1,16 @@
+
+server {
+    # the port your site will be served on
+    listen      80;
+    charset     utf-8;
+
+    # max upload size
+    client_max_body_size 75M;   # adjust to taste
+
+    location / {
+        uwsgi_pass  unix:///tmp/{{ project_name }}.sock;
+        include     uwsgi_params;
+    }
+
+}
+
