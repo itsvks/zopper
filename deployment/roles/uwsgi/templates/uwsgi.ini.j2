@@ -1,23 +1,12 @@
 [uwsgi]
 socket          = /tmp/{{ project_name }}.sock
 vhost           = true
-chdir           = {{ project_root }}/{{ project_name }}/{{ project_name }}
-module          = manage
-callable        = app
+chdir           = {{ project_root }}/{{ project_name }}
+wsgi-file       = {{ project_root }}/{{ project_name }}/{{ project_name }}/wsgi.py
+module          = djano.core.handlers.wsgi:WSGIHandler()
 plugins         = python
-master          = true
 processes       = {{ ansible_processor_vcpus * 2 }}
 threads         = 1
 vacuum          = true
-chown-socket    = www-data
-
-{% if DEPLOYMENT_TYPE == 'STAGING' %}
-    {% set env_vars = environment_variables.STAGING %}
-{% elif DEPLOYMENT_TYPE == 'PRODUCTION' %}
-    {% set env_vars = environment_variables.PRODUCTION %}
-{% elif DEPLOYMENT_TYPE == 'DEVELOPMENT' %}
-    {% set env_vars = environment_variables.DEVELOPMENT %}
-{% endif %}
-{% for key, value in env_vars.items() %}
-env             = {{key}}={{value}}
-{% endfor %}
+chown-socket    = vagrant
+env             = DJANGO_SETTINGS_MODULE={{ project_name }}.settings
