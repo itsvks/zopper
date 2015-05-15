@@ -1,7 +1,7 @@
 [uwsgi]
 socket          = /tmp/{{ project_name }}.sock
 vhost           = true
-chdir           = {{ project_root }}/{{ project_name }}/src
+chdir           = {{ project_root }}/{{ project_name }}/{{ project_name }}
 module          = manage
 callable        = app
 plugins         = python
@@ -19,5 +19,5 @@ chown-socket    = www-data
     {% set env_vars = environment_variables.DEVELOPMENT %}
 {% endif %}
 {% for key, value in env_vars.items() %}
-env                 = {{key}}={{value}}
+env             = {{key}}={{value}}
 {% endfor %}
