@@ -9,4 +9,4 @@ system_packages:
   - git
 
 
-repo_url: git@github.com:devzop/bugatti.git
+repo_url: git@github.com:itsvks/zopper.git

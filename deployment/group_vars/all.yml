@@ -6,4 +6,7 @@ project_group: "{{ ansible_ssh_user }}"
 
 python_requirements_file: "{{project_root}}/{{project_name}}/requirements.txt"
 
-repo_url: git@github.com:itsvks/zopper.git
+environment_variables:
+
+  DEVELOPMENT:
+    DEPLOYMENT_TYPE: 'DEVELOPMENT'
