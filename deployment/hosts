@@ -1,5 +1,5 @@
 [zopper]
-10.4.4.3 ansible_ssh_user=vagrant
+10.4.4.5 ansible_ssh_user=vagrant
 
 [zopper:vars]
 repo_url= git@github.com:itsvks/zopper.git
